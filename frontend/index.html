@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Balanceador de Carga</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align:center;
+            margin-top:50px;
+        }
+
+        button{
+            padding:10px 20px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        #resultado{
+            margin-top:20px;
+            font-size:22px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Prueba de Balanceo de Carga</h1>
+
+    <button onclick="saludar()">
+        Consumir API
+    </button>
+
+    <div id="resultado"></div>
+
+    <script>
+
+        async function saludar(){
+
+            const respuesta =
+                await fetch('/api/v1/saludo');
+
+            const datos =
+                await respuesta.json();
+
+            document.getElementById('resultado').innerHTML =
+                `
+                <p>${datos.mensaje}</p>
+                <p>Instancia: ${datos.instancia}</p>
+                <p>Contenedor: ${datos.contenedor}</p>
+                `;
+        }
+
+    </script>
+
+</body>
+</html>
